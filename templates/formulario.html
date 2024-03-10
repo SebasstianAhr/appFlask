@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>appFlask</title>
+    
+</head>
+<body>
+
+    <div class="container">
+        <div class="cc">
+            <h2>Iniciar sesión</h2>
+            <form method="post" action="{{ url_for('login') }}">
+                <div class="usuario">
+                    <label for="correo">Correo:</label>
+                    <input type="email" name="correo" required>
+                </div>
+                <div class="password">
+                    <label for="contraseña">Contraseña:</label>
+                    <input type="password" name="contraseña" required>                    
+                </div>
+
+
+            <button type="submit">Iniciar sesión</button>
+            <p>{{mensaje}}</p>
+            </form>     
+        </div>
+    </div>
+
+</body>
+</html>

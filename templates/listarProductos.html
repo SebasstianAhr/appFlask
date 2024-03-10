@@ -1,0 +1,36 @@
+<div>
+    <a href="/agregarProducto">
+        <button>Agregar</button>
+    </a>
+</div>
+<table class="table-listar-productos">
+    <thead class="thead-table-listar-productos">
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Categoria</th>
+            <th>Foto</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for producto in listaProductos%}
+            <tr>
+                <td>{{producto['codigo']}}</td>
+                <td>{{producto['nombre']}}</td>
+                <td>{{producto['precio']}}</td>
+                <td>{{producto['categoria']}}</td>
+                <td class="td-foto-listar-productos">
+                    <img class="img-listar-productos" src="../static/images/{{producto['_id']}}" alt="imagen">
+                </td>
+                <td class="text-accion-listar-productos">
+                    <i class="fa fa-edit text-warning" title="Editar"></i>
+                    <a href="/eliminar/{{producto['codigo']}}">
+                        <i class="fa fa-trash text-danger" title="Eliminar"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
