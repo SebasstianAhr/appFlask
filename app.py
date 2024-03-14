@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import pymongo
 import os
 from bson.objectid import ObjectId
+import yagmail  # Agregado para el envío de correos
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './static/imagenes'
@@ -10,8 +11,33 @@ miConexion = pymongo.MongoClient('mongodb://localhost:27017/')
 baseDatos = miConexion['GESTIONARPRODUCTOS']
 productos = baseDatos['PRODUCTOS']
 categorias = baseDatos['CATEGORIAS']
+usuarios = baseDatos['USUARIOS']
 
-@app.route('/')
+@app.route('/iniciarSesion', methods=['POST'])
+def iniciarSesion():  # Corrección del nombre de la función
+    mensaje = None
+    estado = False
+    try:
+        usuario = request.form['txtUser']
+        password = request.form['txtPassword']
+        datosConsulta = {'usuario': usuario, 'password': password}
+        user = usuarios.find_one(datosConsulta)
+        if user:
+            email = yagmail.SMTP("msftsebasstian@gmail.com", open(".password").read(), encoding='UTF-8')
+            asunto = 'Reporte de ingreso al sistema de usuario'
+            mensaje = f"Se informa que el usuario <b>'{user['nombres']} {user['apellidos']}'</b> ha ingresado al sistema"  # Corrección en la interpolación de cadenas
+            email.send(to=['msftsebasstian@gmail.com', user['correo']], subject=asunto, contents=mensaje)
+            return redirect("/listaProductos")  # Corrección en la redirección
+        else:
+            mensaje = 'Credenciales no válidas'
+    except pymongo.errors.PyMongoError as error:  # Corrección en el manejo de excepciones
+        mensaje = error
+        
+    return render_template('frmIniciarSesion.html', estado=estado, mensaje=mensaje)
+
+
+
+@app.route('/listarProductos')
 def inicio():
     listaProductos = productos.find()
     listaP = []
@@ -51,7 +77,6 @@ def agregarProducto():
     except pymongo.errors.PyMongoError as error:  # Corrección: 'pymongo.errors' en lugar de 'pymongo.errors as error'
         mensaje = str(error)
 
-    return render_template('resultado.html', mensaje=mensaje, estado=estado)  # Agregado: Renderizar un template para mostrar el resultado
 
 @app.route('/vistaAgregarProducto')
 def vistaAgregarProducto():
