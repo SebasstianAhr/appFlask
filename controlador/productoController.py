@@ -42,11 +42,15 @@ def agregarProducto():
             foto.save(os.path.join(app.config['UPLOAD_FOLDER'], nombreFoto))
             mensaje = 'Producto agregado correctamente'
             estado = True
+            return render_template('/listarProductos.html')
         else:
             mensaje = 'No se pudo agregar el producto'
+            return mensaje
+        
     
     except pymongo.errors as error:  # Corrección: 'pymongo.errors' en lugar de 'pymongo.errors as error'
         mensaje = error
+        return error
 
 def consultarProductoPorCodigo(codigo):
     try:
@@ -64,3 +68,20 @@ def consultarProductoPorCodigo(codigo):
 def vistaAgregarProducto():
     listaCategorias = categorias.find()
     return render_template('frmAgregarProducto.html', categorias=listaCategorias)
+
+
+@app.route("/consultar/<codigo>", methods=["GET"])
+def consultarPorCodigo (codigo):
+    estado=False
+    mensaje=None        
+    producto=None
+    try:
+        #reciben los datos en formato json
+        datosConsulta = {"codigo": int (codigo) }
+        producto = productos. find_one(datosConsulta)
+        if(producto) :
+            estado=True
+    except pymongo. errors as error:
+        mensaje=error
+    listaCategorias = categorias. find()
+    return render_template("frmEditarProducto.html", producto=producto, categorias=listaCategorias)

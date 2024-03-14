@@ -1,7 +1,7 @@
 {% extends './index.html' %}
 {% block body %}
     <div>
-        <form id="frmProducto" action="/agregarProducto" method="post" class="Form-agregar-producto">
+        <form id="frmProducto" action="/agregarProducto" method="post" enctype="multipart/form-data" class="Form-agregar-producto">
             <div class="titulo-registrar-producto"><h3>REGISTRAR PRODUCTO</h3></div>
             <div class="div-label-input">
                 <label for="txtCodigo">Codigo:</label>
