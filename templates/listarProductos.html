@@ -1,36 +1,38 @@
 <div>
-    <a href="/agregarProducto">
-        <button>Agregar</button>
-    </a>
-</div>
-<table class="table-listar-productos">
-    <thead class="thead-table-listar-productos">
-        <tr>
-            <th>Codigo</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Categoria</th>
-            <th>Foto</th>
-            <th>Accion</th>
-        </tr>
-    </thead>
-    <tbody>
-        {%for producto in listaProductos%}
+    <div>
+        <a href="/vistaAgregarProducto">
+            <button>Agregar</button>
+        </a>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoria</th>
+                    <th>Foto</th>
+                    <th>Accion</th>
+                </tr>
+           </thead>
+           <tbody id="listaP">
+            {%for p in productos%}
             <tr>
-                <td>{{producto['codigo']}}</td>
-                <td>{{producto['nombre']}}</td>
-                <td>{{producto['precio']}}</td>
-                <td>{{producto['categoria']}}</td>
-                <td class="td-foto-listar-productos">
-                    <img class="img-listar-productos" src="../static/images/{{producto['_id']}}" alt="imagen">
+                <td>{{p['codigo']}}</td>
+                <td>{{p['nombre']}}</td>
+                <td>{{p['precio']}}</td>
+                <td>{{p['nombreCategoria']}}</td>
+                <td>
+                    <img src="../static/imagenes/{{p['_id']}}.jpg" alt="imagenProducto">
                 </td>
-                <td class="text-accion-listar-productos">
-                    <i class="fa fa-edit text-warning" title="Editar"></i>
-                    <a href="/eliminar/{{producto['codigo']}}">
-                        <i class="fa fa-trash text-danger" title="Eliminar"></i>
-                    </a>
+                <td>
+                    <i title="editar"></i>
+                    <i title="eliminar"></i>
                 </td>
             </tr>
-        {% endfor %}
-    </tbody>
-</table>
+            {%endfor%}
+           </tbody>
+        </table>
+    </div>
+</div>

@@ -1,16 +1,14 @@
-function abrirModalEliminar(idProducto){
-    Swal.fire({
-        title: 'Eliminar producto',
-        text: 'Esta seguro de que quiere eliminar este producto',
-        icon: 'Warning',
-        showCancelButton: true,
-        cinfirmButtonColor: '#3085d6',
-        canselButtonColor: '#d33',
-        cancelButtonText: 'NO',
-        confirmButtonText: 'SI'
-    }).then((result) => {
-        if(result.isConfirmed){
-            location.href='/eliminar/' +idProducto
-        }
-    })
+async function visualizarFoto(evento) {
+  const files = evento.target.files;
+  const archivo = files[0];
+  let filename = archivo.name;
+  let extension = filename.split(".").pop();
+  extension = extension.tolowerCase();
+  if (extension !== "jpg") {
+    evento.target.value = "";
+    swal.fire("Seleccionar", "La imagen debe ser en formato JPG", "warning");
+  } else {
+    const objectURL = URL.createObjectURL(archivo);
+    imagenProducto.setAttribute("src", objectURL);
+  }
 }

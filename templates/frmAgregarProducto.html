@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+
+{% block encabezado %}
+    {% include 'encabezado.html' %}
+{% endblock %}
+
+{% block contenido %}
+    <div>
+        <form id="frmProducto" action="/agregarProducto" method="post" class="Form-agregar-producto">
+            <div class="titulo-registrar-producto"><h3>REGISTRAR PRODUCTO</h3></div>
+            <div class="div-label-input">
+                <label for="txtCodigo">Codigo:</label>
+                <input type="number" name="txtCodigo" id="txtCodigo" placeholder="Codigo..." required>
+            </div>
+            <div class="div-label-input">
+                <label for="txtNombre">Nombre:</label>
+                <input type="text" name="txtNombre" id="txtNombre" placeholder="Nombre..." required>
+            </div>
+            <div class="div-label-input">
+                <label for="txtPrecio">Precio:</label>
+                <input type="number" name="txtPrecio" id="txtPrecio" placeholder="Precio..." required>
+            </div>
+            <div class="div-label-input">
+                <label for="cbCategoria">Categoria:</label>
+                <select name="cbCategoria" id="cbCategoria">
+                    <option>Seleccione</option>
+                    {% for c in categorias %}
+                        <option value="{{c['_id']}}">{{c['nombre']}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="div-label-input">
+                <label for="fileFoto">Foto(jpg):</label>
+                <input type="file" name="fileFoto" id="fileFoto" onchange="visualizarFoto(event)"   required accept=".jpg">
+            </div>
+            <div class="img-producto">
+                <img id="imagenProducto" alt="imagenProducto">
+            </div>
+            <div class="button-agregar-ptoducto">
+                <button>Agregar</button>
+                <a href="/"><button>Cancelar</button></a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block piePagina %}
+    {% include 'piePagina.html' %}
+{% endblock %}
