@@ -1,10 +1,10 @@
-{% extends 'index.html' %}
+{% extends './index.html' %}
 
 {% block encabezado %}
     {% include 'encabezado.html' %}
 {% endblock %}
 
-{% block contenido %}
+{% block body %}
     <div>
         <form id="frmProducto" action="/agregarProducto" method="post" class="Form-agregar-producto">
             <div class="titulo-registrar-producto"><h3>REGISTRAR PRODUCTO</h3></div>

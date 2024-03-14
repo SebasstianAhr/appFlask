@@ -39,7 +39,7 @@ def agregarProducto():
             'categoria': idCategoria,
         }
         resultado = productos.insert_one(producto)
-        if resultado.acknowledged:
+        if (resultado.acknowledged):
             idProducto = resultado.inserted_id  # Corrección: 'insert_id' a 'inserted_id'
             nombreFoto = f'{idProducto}.jpg'
             foto.save(os.path.join(app.config['UPLOAD_FOLDER'], nombreFoto))
