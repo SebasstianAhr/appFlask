@@ -1,5 +1,5 @@
 from app import app, categorias
-from flask import Flask,render_template
+from flask import Flask, render_template
 import pymongo
 
 @app.route('/obtenerCategorias')
