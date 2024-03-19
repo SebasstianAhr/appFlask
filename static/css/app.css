@@ -73,7 +73,9 @@ td{
 
 
 .img-listar-productos{
-    width: 100%;
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
 
 }
 
@@ -178,3 +180,77 @@ tr:hover td{
     font-size: 1rem;
     cursor: pointer;
 }
+
+/*AGREGAR PRODUCTO*/
+
+.div-agregar-producto{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Form-agregar-producto{
+    margin-top: 1rem ;
+    width: 34%;
+    padding: 1rem;
+    background-color: #f6f9fc;
+    border-radius: 5px;
+}
+
+.div-label-input{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.4rem;
+}
+
+.div-label-input label{
+    padding-bottom: 0.3rem;
+}
+
+.div-label-input input{
+    padding: 0.3rem;
+    font-size: 1rem;
+    border: 1px solid #eaf0f6;
+    border-radius: 5px;
+}
+.div-label-input select{
+    padding: 0.3rem;
+    font-size: 1rem;
+    border: 1px solid #eaf0f6;
+    border-radius: 5px;
+}
+.div-label-input input:focus{
+    outline: none;
+}
+.div-label-input select:focus{
+    outline: none;
+}
+
+.button-agregar-ptoducto{
+    padding: 1rem 0;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.button-agregar-agregar-productos{
+    border: none;
+    color: #fff;
+    background-color: #ff5c35;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.button-cancelar-agregar-productos{
+    border: none;
+    color: #fff;
+    background-color: #7691ad;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+

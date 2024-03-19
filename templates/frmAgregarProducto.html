@@ -1,23 +1,23 @@
 {% extends './index.html' %}
 {% block body %}
-    <div>
+    <div class="div-agregar-producto">
         <form id="frmProducto" action="/agregarProducto" method="post" enctype="multipart/form-data" class="Form-agregar-producto">
             <div class="titulo-registrar-producto"><h3>REGISTRAR PRODUCTO</h3></div>
             <div class="div-label-input">
                 <label for="txtCodigo">Codigo:</label>
-                <input type="number" name="txtCodigo" id="txtCodigo" placeholder="Codigo..." required>
+                <input type="number" name="txtCodigo" id="txtCodigo" required>
             </div>
             <div class="div-label-input">
                 <label for="txtNombre">Nombre:</label>
-                <input type="text" name="txtNombre" id="txtNombre" placeholder="Nombre..." required>
+                <input type="text" name="txtNombre" id="txtNombre" required>
             </div>
             <div class="div-label-input">
                 <label for="txtPrecio">Precio:</label>
-                <input type="number" name="txtPrecio" id="txtPrecio" placeholder="Precio..." required>
+                <input type="number" name="txtPrecio" id="txtPrecio" required>
             </div>
             <div class="div-label-input">
                 <label for="cbCategoria">Categoria:</label>
-                <select name="cbCategoria" id="cbCategoria">
+                <select  name="cbCategoria" id="cbCategoria">
                     <option>Seleccione</option>
                     {% for c in categorias %}
                         <option value="{{c['_id']}}">{{c['nombre']}}</option>
@@ -28,12 +28,12 @@
                 <label for="fileFoto">Foto(jpg):</label>
                 <input type="file" name="fileFoto" id="fileFoto" onchange="visualizarFoto(event)"   required accept=".jpg">
             </div>
-            <div class="img-producto">
+            <div class="img-producto ">
                 <img id="imagenProducto" alt="imagenProducto">
             </div>
             <div class="button-agregar-ptoducto">
-                <button>Agregar</button>
-                <a href="/"><button>Cancelar</button></a>
+                <button class="button-agregar-agregar-productos">Agregar</button>
+                <a href="/"><button class="button-cancelar-agregar-productos">Cancelar</button></a>
             </div>
         </form>
     </div>
