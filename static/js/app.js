@@ -1,14 +1,71 @@
-async function visualizarFoto(evento) {
-  const files = evento.target.files;
-  const archivo = files[0];
-  let filename = archivo.name;
-  let extension = filename.split(".").pop();
-  extension = extension.tolowerCase();
-  if (extension !== "jpg") {
-    evento.target.value = "";
-    swal.fire("Seleccionar", "La imagen debe ser en formato JPG", "warning");
+//eliminar producto.
+
+document.addEventListener('DOMContentLoaded', function () {
+  const trash = document.querySelectorAll('.fa-trash');
+  trash.forEach(icon => {
+      icon.addEventListener('click', function (event) {
+          event.preventDefault();
+
+          const productId = this.getAttribute('data-id');
+
+          Swal.fire({
+              title: '¿Estás seguro de querer eliminar este producto?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Sí',
+              cancelButtonText: 'Cancelar'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.href = '/eliminarProducto/' + productId;
+              }
+          });
+      });
+  });
+});
+
+// editar producto.
+
+document.addEventListener('DOMContentLoaded', function () {
+  const edit = document.querySelectorAll('.fa-edit');
+  edit.forEach(icon => {
+      icon.addEventListener('click', function (event) {
+          event.preventDefault();
+
+          const productId = this.getAttribute('data-id');
+
+          Swal.fire({
+              title: '¿Estás seguro de querer editar este producto?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Sí',
+              cancelButtonText: 'Cancelar'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.href = '/editarProducto/' + productId;
+              }
+          });
+      });
+  });
+});
+
+
+function cancelarRegistro() {
+  window.location.href = '/iniciarSesion';
+}
+
+// visualizar la foto
+function visualizarFoto(event) {
+  imagenProducto = document.getElementById('imagenProducto');
+  
+  if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          imagenProducto.src = e.target.result;
+      }
+
+      reader.readAsDataURL(event.target.files[0]);
   } else {
-    const objectURL = URL.createObjectURL(archivo);
-    imagenProducto.setAttribute("src", objectURL);
+      imagenProducto.src = '';
   }
 }

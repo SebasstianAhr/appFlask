@@ -5,6 +5,8 @@ import pymongo
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './static/imagenes'
 
+app.secret_key = "123456789"
+
 miConexion = pymongo.MongoClient('mongodb://localhost:27017/')
 baseDatos = miConexion['GESTIONPRODUCTOS']
 productos = baseDatos['PRODUCTOS']

@@ -1,4 +1,43 @@
 {% extends './index.html' %}
+
 {% block body %}
-    
+<div class="div-agregar-producto" style="margin: 0 auto">
+        <form class="Form-agregar-producto" action="/editar"  method="POST" enctype="multipart/form-data">
+            <div><h3>Editar producto</h3></div>
+            <input type="hidden" name="idProducto" value="{{ producto._id }}">
+            <div class="div-label-input">
+                <label for="txtCodigo" class="fw-bold">Código:</label>
+                <input type="text" name="txtCodigo" id="txtCodigo" class="form-control" value="{{ producto.codigo }}" required>
+            </div>
+            <div class="div-label-input">
+                <label for="txtNombre" class="fw-bold">Nombre:</label>
+                <input type="text" name="txtNombre" id="txtNombre" class="form-control" value="{{ producto.nombre }}" required>
+            </div>
+            <div class="div-label-input">
+                <label for="txtPrecio" class="fw-bold">Precio:</label>
+                <input type="text" name="txtPrecio" id="txtPrecio" class="form-control" value="{{ producto.precio }}" required>
+            </div>
+            <div class="div-label-input">
+                <label for="cbCategoria" class="fw-bold">Categoría:</label>
+                <select name="cbCategoria" id="cbCategoria" class="form-control" required>
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria._id }}" {% if categoria._id == producto.categoria %} selected {% endif %}>{{ categoria.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="div-label-input">
+                <label class="fw-bold" for="fileFoto">Foto(jpg):</label>
+                <input type="file" name="fileFoto" id="fileFoto" onchange="visualizarFoto(event)"  
+                class="form-control"  accept=".jpg" required >
+            </div>
+            <div class="img-producto">
+                <img id="imagenProducto">
+            </div>
+            <div class="button-agregar-ptoducto">
+
+                <button type="submit" class="button-agregar-agregar-productos">Editar</button>
+                <a href="/listarProductos"><button type="button" class="button-cancelar-agregar-productos">Cancelar</button></a>
+            </div>
+        </form>
+</div>
 {% endblock %}
