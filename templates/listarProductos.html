@@ -35,10 +35,14 @@
           />
         </td>
         <td class="td-accion">
-          <a href="/editarProducto/{{p['_id']}}"
+          <a class="edit-icon" href="{{p['_id']}}"
             ><i class="fa fa-edit text-warning" title="editar"></i
           ></a>
-          <i class="fa fa-trash text-danger" title="eliminar"></i>
+
+          <a class="delete-icon" href="{{p['_id']}}">
+
+            <i class="fa fa-trash text-danger" title="eliminar"></i>
+          </a>
         </td>
       </tr>
       {%endfor%}

@@ -1,13 +1,14 @@
 //eliminar producto.
 
 document.addEventListener('DOMContentLoaded', function () {
-  const trash = document.querySelectorAll('.fa-trash');
+  const trash = document.querySelectorAll('.delete-icon');
   trash.forEach(icon => {
       icon.addEventListener('click', function (event) {
           event.preventDefault();
 
-          const productId = this.getAttribute('data-id');
 
+          const productId = icon.getAttribute('href')
+          
           Swal.fire({
               title: '¿Estás seguro de querer eliminar este producto?',
               icon: 'warning',
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }).then((result) => {
               if (result.isConfirmed) {
                   window.location.href = '/eliminarProducto/' + productId;
+                  
               }
           });
       });
@@ -26,12 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
 // editar producto.
 
 document.addEventListener('DOMContentLoaded', function () {
-  const edit = document.querySelectorAll('.fa-edit');
+  const edit = document.querySelectorAll('.edit-icon');
   edit.forEach(icon => {
       icon.addEventListener('click', function (event) {
           event.preventDefault();
 
-          const productId = this.getAttribute('data-id');
+          const productId = icon.getAttribute('href')
 
           Swal.fire({
               title: '¿Estás seguro de querer editar este producto?',
@@ -48,10 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-
-function cancelarRegistro() {
-  window.location.href = '/iniciarSesion';
-}
 
 // visualizar la foto
 function visualizarFoto(event) {
